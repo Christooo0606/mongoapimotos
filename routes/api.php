@@ -25,15 +25,15 @@ use Illuminate\Http\Request;
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
 Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
-
+Route::apiResource('users', UserController::class);
+Route::apiResource('products', ProductController::class);
+Route::apiResource('categories', CategoryController::class);
+Route::apiResource('orders', OrderController::class);
+Route::apiResource('carts', CartController::class);
+Route::apiResource('contacts', ContactController::class);
 // Rutas para los recursos principales con autenticación
 Route::middleware('auth:sanctum')->group(function () {
-    Route::apiResource('users', UserController::class);
-    Route::apiResource('products', ProductController::class);
-    Route::apiResource('categories', CategoryController::class);
-    Route::apiResource('orders', OrderController::class);
-    Route::apiResource('carts', CartController::class);
-    Route::apiResource('contacts', ContactController::class);
+
 
     // Ruta para obtener el usuario autenticado
     Route::get('/user', function (Request $request) {
